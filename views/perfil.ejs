@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final - Grupo 5 - Desarrollo Web</title>
+    <link rel="icon" href="../resources/images/icono-umg.png">
+    <link rel="stylesheet" href="../resources/css/style_perfil.css">
+    <link rel="stylesheet" href="../resources/css/cards.css">
+    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    
+    <% if(results) { %> 
+        <section class="perfil-usuario">
+            <div class="contenedor-perfil">
+                <div class="portada-perfil" style="background-image: url('../resources/images/fondo9.jpg');">
+                    <div class="sombra"></div>
+                    <div class="avatar-perfil">
+                        <!-- Se debe de mostrar la imagen -->
+                        <img src="../resources/uploads/<%= results.imagen %>" alt="img">
+                        <a href="/editar_perfil/<%= results.id_usuario %>" class="cambiar-foto">
+                            <i class="fas fa-camera"></i> 
+                            <span>Cambiar foto</span>
+                        </a>
+                    </div>
+                    <div class="datos-perfil">
+                        <h4 class="titulo-usuario"><%= results.nombre %></h4>
+                        <p class="bio-usuario"><%= results.email %></p>
+                    </div>
+                    <div class="opcciones-perfil">
+                        <a type="" href="/logout" onclick="return confirm('¿Quiere cerrar su sesión?');">Cerrar sesión</a>
+                    </div>
+                </div>
+                <div class="menu-perfil">
+                    <ul>
+                        <li><a href="/perfil/<%= results.id_usuario %>" title=""><i class="icono-perfil fas fa-bullhorn"></i> Publicaciones</a></li>
+                        <li><a href="/subir_imagen/<%= results.id_usuario %>" title=""><i class="icono-perfil fas fa-info-circle"></i> Subir fotografía</a></li>
+                        <li><a href="/editar_perfil/<%= results.id_usuario %>" title=""><i class="icono-perfil fas fa-info-circle"></i> Editar Perfil</a></li>
+                    </ul>
+                </div>
+                <div class="cards">
+                    <% results2.forEach((foto)=> { %>
+                        
+                            <div class="card">
+                                <div class="card__image-holder">
+                                <img class="card__image" src="../resources/uploads/<%= foto.imagen %>" style="width: 100%; height: 300px;"/>
+                                </div>
+                                <div class="card-title">
+                                <a href="#" class="toggle-info btn">
+                                    <span class="left"></span>
+                                    <span class="right"></span>
+                                </a>
+                                </div>
+                                    
+                                        <div class="card-actions">
+                                            <input hidden type="text" placeholder="<%= foto.id_foto %>">
+                                            <form action="/eliminar/<%= results.id_usuario %>/<%= foto.id_foto %>" method="post">
+                                                <input type="submit" name="submit" class="btn" value="Borrar Fotografía">
+                                            </form>
+                                        </div>
+                                    </form>
+                            </div>
+                    <%})%>
+                </div>
+            </div>
+        </section>
+    <% } %>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(typeof alert != "undefined") { %>
+        <% if(results) { %>
+        <script>
+           Swal.fire({
+              title:'<%= alertTitle %> <%= results.nombre %>',
+              text: '<%=alertMessage %>',
+              icon: '<%= alertIcon %>',
+              showConfirmButton: <%= showConfirmButton %>,
+              timer: <%= timer %>
+           }).then(()=>{
+              window.location='/<%= ruta %>'
+           })
+        </script>
+        <%}%>  
+     <%}%>
+</body>
+</html>

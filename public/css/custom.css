@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.2%;
+}
+
+body{
+    font-size: 25px;
+    font-family: Helvetica;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+
+.container{
+    margin: 0 auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.select_canvas, .imagenPreview{
+    background-color: rgba(82, 82, 82, 0.482);
+    width: 600px;
+    height: 300px;
+    border: 1px solid rgb(0, 0, 0);
+
+}
+
+.edit_container{
+    padding: 30px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.volver_menu{
+    padding: 1px;
+    width: 100%;
+    display: flex;
+    flex-direction: right;
+    justify-content: right;
+    align-items: right;
+}
+
+.container_imagenes{
+    display: grid;
+    grid-template-columns: 4fr 4fr;
+    grid-column-gap: 15px
+}
+
+.menu_opciones{
+    margin-top: 2rem;
+    background-color: #3a31ba;
+    padding: 1rem;
+    width: 80%;
+    border: solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+}
+.btn{
+    padding: 15px;
+    height: 55px;
+    width: 220px;
+    border-radius: 15px;
+    background: rgb(255, 255, 255);
+    border-color: #000;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+.btn:hover{
+    background-color: #fbee7a;
+}
+
+
+.uno a{
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    padding: 12px 70px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .15);
+    overflow: hidden;
+    transition: ease-out 120ms background-color;
+    background-color: #3a31ba;
+    border: 2px solid #000000;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+a:hover{
+    background-color: #ffffff;
+    color: #3a31ba;
+}
+
+
+
+.perfil-usuario {
+    min-width: 1535px;
+    max-width: 8000px;
+    background: linear-gradient(#3FD0F4, transparent);
+    color: #333;
+}
+
+.perfil-usuario .sombra {
+    position: absolute;
+    display: block;
+    background: linear-gradient(transparent,rgba(0, 0, 0, .5));
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+}
+.perfil-usuario .portada-perfil,
+.perfil-usuario .sombra {
+    border-radius: 0 0 20px 20px;
+}
+.perfil-usuario img {
+    width: 100%;
+}

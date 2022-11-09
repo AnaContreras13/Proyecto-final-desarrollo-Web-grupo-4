@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../resources/css/custom.css">
+    <link rel="icon" href="../resources/images/icono-umg.png">
+    <title>Proyecto Final - Grupo 5 - Desarrollo Web</title>
+</head>
+<body>
+    <% if(results) { %>
+
+            <div class="perfil-usuario">
+                <div class="container">
+                    <br>
+                    <form action="/subir_imagen/<%= results.id_usuario %>" method="post" enctype="multipart/form-data">
+                        <center>
+                            <h1>Subir imágenes</h1>
+                            <div class="menu_opciones">
+                                <input hidden type="text", id="id_usuario" name="id_usuario" placeholder="<%= results.id_usuario %>">
+                                <input type="file" id="myFile" name="myFile"  class="box">
+                                <label for="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="submit" name="submit" value="Guardar Imagen" class="btn" onclick="uploadImage()">
+                            </div>
+                        </center>
+                        <br>
+                    </form>
+
+                    <div class="container_imagenes">
+                        <img  alt="Seleccionar imagen" id="imagenPreview" class="imagenPreview">
+                        <canvas id="select_canvas" class="select_canvas"  width="3500px" height="3500px"></canvas>
+                    </div>
+                    <div class="menu_opciones">
+                        <button class="btn" id="restablecer" >Restablecer</button>
+                        <button class="btn" id="invertir" >Invertir</button>
+                        <button class="btn" id="sepia" >Efecto sepia</button>
+                        <button class="btn" id="escalas" >Escalas grises</button>
+                    </div>
+                    <br>
+                    <div class="uno">
+                        <a href="/perfil/<%= results.id_usuario %>">Regresar a perfil</a>
+                    </div>
+                </div>
+            
+
+                <!--Script-->
+                <script src="../resources/js/index.js"></script>
+            </div>
+    <%}%>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+    <% if(typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+                title:'<%= alertTitle %>',
+                text: '<%=alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: <%= showConfirmButton %>,
+                timer: <%= timer %>
+            }).then(()=>{
+                window.location='/<%= ruta %>'
+            })
+        </script>
+    <%}%>
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+<script src="../resources/js/imagenes.js"></script>
+</html>

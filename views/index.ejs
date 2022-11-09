@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../resources/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Proyecto Final - Grupo 5 - Desarrollo Web</title>
+    <link rel="icon" href="../resources/images/icono-umg.png">
+</head>
+
+<body>
+    <div class="container-form sign-up">
+        <div class="welcome-back">
+            <div class="message">
+                <h2>Bienvenido a SAME-PIC</h2>
+                <p>Si ya tienes una cuenta, por favor inicia sesión aquí:</p>
+                <button class="sign-up-btn">INICIAR SESIÓN</button>
+            </div>
+        </div>
+        <form action="/sign_up/:usuario" method="post" class="formulario" >
+            <br><br><br><br>
+            <h2 class="create-account">CREAR UNA CUENTA</h2>
+            <input type="text" name="name2" id="name2" placeholder="Nombre" required autocomplete="off">
+            <input type="email" name="user2" id="user2" placeholder="Correo Electrónico" required autocomplete="off">
+            <input type="password" name="pass2" id="pass2" placeholder="Contraseña" required autocomplete="off">
+            <input type="submit" value="REGISTRARSE"/>
+        </form>
+    </div>
+    <div class="container-form sign-in">
+        <form action="/login" method="post" class="formulario">
+            <br><br><br><br><br>
+            <h2 class="create-account">INICIAR SESIÓN</h2>
+            <input type="email" name="user" id="user" placeholder="Correo Electrónico" required>
+            <input type="password" name="pass" id="pass" placeholder="Contraseña" required>
+            <input type="submit" value="INICIAR SESIÓN">
+        </form>
+        <div class="welcome-back">
+            <div class="message">
+                <h2>Bienvenido de nuevo</h2>
+                <p>Si aún no tienes una cuenta, por favor registrese aquí:</p>
+                <button class="sign-in-btn">REGISTRARSE</button>
+            </div>
+        </div>
+    </div>
+    <script  src="../resources/js/script.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+                title:'<%= alertTitle %>',
+                text: '<%=alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: <%= showConfirmButton %>,
+                timer: <%= timer %>
+            }).then(()=>{
+                window.location='/<%= ruta %>'
+            })
+        </script>
+    <%}%>
+
+    <% if(typeof alert != "undefined") { %>
+        <% if(results) { %>
+        <script>
+           Swal.fire({
+              title:'<%= alertTitle %> <%= results.nombre %>',
+              text: '<%=alertMessage %>',
+              icon: '<%= alertIcon %>',
+              showConfirmButton: <%= showConfirmButton %>,
+              timer: <%= timer %>
+           }).then(()=>{
+              window.location='/<%= ruta %>/<%= results.id_usuario %>'
+           })
+        </script>
+        <% }else{ %>
+           <script>
+              Swal.fire({
+                 title:'<%= alertTitle %>',
+                 text: '<%=alertMessage %>',
+                 icon: '<%= alertIcon %>',
+                 showConfirmButton: <%= showConfirmButton %>,
+                 timer: <%= timer %>
+              }).then(()=>{
+                 window.location='/<%= ruta %>'
+              })
+           </script>
+        <%}%>  
+     <%}%>
+</body>
+
+</html>
